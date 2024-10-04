@@ -221,7 +221,7 @@ const getCombinedData = async (month) => {
 module.exports = {
   getTransactions,
   getStatistics,
-  // getBarChartData,
+   getBarChartData,
   getPieChartData,
   getCombinedData,
 };
