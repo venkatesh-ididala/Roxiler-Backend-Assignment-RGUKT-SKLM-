@@ -5,10 +5,11 @@ const transactionRoutes = require('./routes/transactionRoutes');
 const productRoutes = require('./routes/productRoutes');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-
-
+const path=require('path');
 
 dotenv.config();
+
+const __dirname=path.resolve();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -29,6 +30,10 @@ mongoose.connect(process.env.MONGO, {
 
  app.use('/api/transactions', transactionRoutes);
  app.use('/api/products', productRoutes);
+ app.use(express.static(path.join(__dirname,'/client/dist')))
+app.get('*',(req,res)=>{
+    res.sendFile(path.join(__dirname,'client','dist','index.html'));
+});
 
 
 app.listen(PORT, () => {
